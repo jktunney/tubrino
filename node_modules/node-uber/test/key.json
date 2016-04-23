@@ -1,0 +1,7 @@
+{
+  "client_id": "5tzqAQx84xIaTjUvxnN3sc86lB82JopV",
+  "client_secret": "S9uquJpXcXHJSI0easndrMA6yBWLmHMM_tRiSGuk",
+  "server_token": "Y9M_N84-YS2nHDHZL89q9qyCuRtVhaHc8yTd2QfL",
+  "redirect_uri": "http://localhost/callback",
+  "name": "nodejs uber wrapper"
+}
