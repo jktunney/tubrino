@@ -87,6 +87,13 @@ exports.transcription = function(request, response) {
     var responseId = request.params.responseId;
     var questionIndex = request.params.questionIndex;
     var transcript = request.body.TranscriptionText;
+    geocoder(transcript, function(results, status){
+        if(err){
+            console.error(err)
+        }else{
+            console.log(results)
+        }
+    })
 
     SurveyResponse.findById(responseId, function(err, surveyResponse) {
         if (err || !surveyResponse || 

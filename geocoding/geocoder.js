@@ -1,3 +1,5 @@
+var GoogleMapsAPI = require('googlemaps')
+
 var publicConfig = {
   key: 'AIzaSyAPn3z-8ixvGSXGPxUVP3anBdH20cr-GCE',
   stagger_time:       1000, // for elevationPath 
@@ -15,12 +17,20 @@ var geocodeParams = {
   "language":   "en",
   "region":     "uk"
 };
+
+gmAPI.geocode(geocodeParams, function(err, result){
+  console.log('heygeo ')
+  console.log(result.results[0].geometry);
+  //console.log('latlng ' + result.geometry.location);
+  console.log('-------------------------------------')
+});
  
 module.exports = function(address, callback){
   gmAPI.geocode(address, function(results, status){
     if(status === google.maps.GeocoderStatus.OK) {
-      var geoLocated = results[0].geometry.location
+      let results = results[0].geometry.location
     }
+    callback(null, geoLocated)
   })
 }
  
@@ -33,5 +43,8 @@ var reverseGeocodeParams = {
 };
  
 gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result){
+  console.log('reversegeo')
   console.log(result);
+  console.log('-------------------------------------')
 });
+
