@@ -9,26 +9,25 @@ var voice = require('./routes/voice');
 var message = require('./routes/message');
 var results = require('./routes/results');
 
+// initialize MongoDB connection
 mongoose.connect(config.mongoUrl);
 
+// Create Express web app with some useful middleware
 var app = express();
-
-//Create web app with some useful middleware (one variation made)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(urlencoded({ extended: true }));
 app.use(morgan('combined'));
 
-//Twillio Webhook routes
+// Twilio Webhook routes
 app.post('/voice', voice.interview);
 app.post('/voice/:responseId/transcribe/:questionIndex', voice.transcription);
 app.post('/message', message);
 
-//Ajax route to aggregate response data for the UI
-console.log('hey you' + results)
+// Ajax route to aggregate response data for the UI
 app.get('/results', results);
 
-//Create HTTP server and mount express app
+// Create HTTP server and mount Express app
 var server = http.createServer(app);
-server.listen(3000, () => {
-	console.log('Express server started on *:3000')
-})
+server.listen(config.port, function() {
+    console.log('Express server started on *:'+config.port);
+});
