@@ -28,7 +28,7 @@
     "mongoose": "4.4.8",
     "morgan": "^1.5.1",
     "twilio": "^1.10.0",
-    "node-uber": "^0.0.7"
+    "node-uber": "^0.0.7",
     "googlemaps": "^1.4.0"
   }
 }
