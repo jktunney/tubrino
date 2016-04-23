@@ -1,0 +1,1 @@
+Report bug with survey-node: if fist one question in survey_data.js is text, translation throws 500 error
