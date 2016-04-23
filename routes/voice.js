@@ -1,6 +1,8 @@
 var twilio = require('twilio');
 var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
+var GoogleMapsLoader = require('googlemaps')
+var geocoder = require('../geocoding/geocoder')
 
 // Main interview loop
 exports.interview = function(request, response) {
@@ -34,13 +36,13 @@ exports.interview = function(request, response) {
 
         // If question is null, we're done!
         if (!question) {
-            say('Thank you for taking this survey. Goodbye!');
+            say('Thank you for requesting a ride. We will call you back with your ride information!');
             return respond();
         }
 
         // Add a greeting if this is the first question
         if (questionIndex === 0) {
-            say('Thank you for taking our survey. Please listen carefully '
+            say('Thank you for requesting a ride. Please listen carefully '
                 + 'to the following questions.');
         }
 
