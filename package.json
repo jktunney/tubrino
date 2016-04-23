@@ -1,32 +1,33 @@
 {
-  "name": "survey-node",
+  "name": "tuber",
   "version": "1.0.0",
-  "description": "an automated survey conducted via voice and sms",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TwilioDevEd/survey-node"
+    "url": "https://github.com/jktunney/tuber.git"
   },
   "keywords": [
     "twilio",
-    "express",
-    "survey"
+    "uber",
+    "aging"
   ],
-  "author": "Kevin Whinnery",
+  "author": "Jake Tunney",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TwilioDevEd/survey-node/issues"
+    "url": "https://github.com/jktunney/tuber/issues"
   },
-  "homepage": "https://github.com/TwilioDevEd/survey-node",
+  "homepage": "https://github.com/jktunney/tuber",
   "dependencies": {
     "body-parser": "^1.11.0",
     "express": "^4.11.2",
     "jade": "^1.9.2",
     "mongoose": "4.4.8",
     "morgan": "^1.5.1",
-    "twilio": "^1.10.0"
+    "twilio": "^1.10.0",
+    "node-uber": "^0.0.7"
   }
 }
