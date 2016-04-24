@@ -88,11 +88,16 @@ exports.transcription = function(request, response) {
     var questionIndex = request.params.questionIndex;
     var transcript = request.body.TranscriptionText;
 
+    console.log('transcript');
+    console.log(transcript);
+
     SurveyResponse.findById(responseId, function(err, surveyResponse) {
         if (err || !surveyResponse || 
             !surveyResponse.responses[questionIndex]) 
             return response.status(500).end();
 
+        console.log('surveyResponse');
+        console.log(surveyResponse);
         // Update appropriate answer field
         surveyResponse.responses[questionIndex].answer = transcript;
         surveyResponse.markModified('responses');
@@ -100,32 +105,15 @@ exports.transcription = function(request, response) {
             return response.status(err ? 500 : 200).end();
         });
         
-        concatVar = {
-            "address": surveyResponse.responses[2].answer + ' ' + transcript + ' ' + surveyResponse.responses[1].answer
-        };
-
-    //    this.orderUber(addrInfo)
-        if (!concatVar) {
-            console.log('No concatVar, using default')
-            concatVar = {
-                "address": "4 Dorothy Avenue, 21221"
-            };
-        }
-        console.log('Starting Geocoder')
-        console.log('------------------------')
-        geocoder(concatVar, function(err, latLong){
-            if(err){
-                console.error(err)
-            }else{
-                console.log('LATLONG')
-                console.log(latLong.location.lat)
-                console.log(latLong.location.lng)
-                customerLat = latLong.location.lat
-                customerLong = latLong.location.lng
-            }
-        });
+        console.log('logging house number')
+        console.log(surveyResponse.responses[2].answer)
+        console.log('logging zip')
+        console.log(surveyResponse.responses[1].answer)
+        console.log('logging transcript')
+        console.log(transcript)
     });
 };
+
 //    setTimeout(
 //        SurveyResponse.findById(responseId, function(err, surveyResponse) {
 //        var houseNumber = surveyResponse.responses[2].answer
@@ -147,22 +135,21 @@ exports.transcription = function(request, response) {
 //    }), 50000)
     
 
-//exports.orderUber = function(addrInfo) {
-//    //var uberorder = new Uber.order
-//    if (!addrInfo) {
-//        console.log('No addrInfo, using default')
-//        addrInfo = {
-//            "address": "4 Dorothy Avenue, 21221"
-//        };
-//    }
-//    console.log('starting geocoder')
-//    geocoder(addrInfo, function(err, latLong){
-//    if(err){
-//        console.error(err)
-//    }else{
-//        console.log('LATLONG')
-//        console.log(latLong.location.lat)
-//        console.log(latLong.location.lng)
-//        }
-//    });
-//};
+function orderUber(addrInfo) {
+    //var uberorder = new Uber.order
+    if (!addrInfo) {
+        addrInfo = {
+            "address": "4 Dorothy Avenue, 21221"
+        };
+    }
+    console.log('starting geocoder')
+    geocoder(addrInfo, function(err, latLong){
+    if(err){
+        console.error(err)
+    }else{
+        console.log('LATLONG')
+        console.log(latLong.location.lat)
+        console.log(latLong.location.lng)
+        }
+    });
+};

@@ -13,7 +13,7 @@ module.exports = [
         type: 'number'
     },
     {
-        text: 'Please tell us your street name.',
+        text: 'Please tell us your street name, city, and state.',
         type: 'text'
     }
 ];

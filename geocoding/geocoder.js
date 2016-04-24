@@ -11,6 +11,8 @@ var gmAPI = new GoogleMapsAPI(publicConfig);
  
 module.exports = function(concatVar, callback){
   gmAPI.geocode(concatVar, function(err, result){
+      console.log('geocode results')
+      console.log(result)
       var latLong = result.results[0].geometry;
       callback(null, latLong)
   })
