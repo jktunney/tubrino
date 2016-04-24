@@ -63,7 +63,7 @@ exports.interview = function(request, response) {
         } else if (question.type === 'boolean') {
             say('Press one for "yes", and any other key for "no".');
             twiml.gather({
-                timeout: 10,
+                timeout: 20,
                 numDigits: 1
             });
         } else {
@@ -71,7 +71,7 @@ exports.interview = function(request, response) {
             say('Enter the number using the number keys on your telephone.' 
                 + ' Press star to finish.');
             twiml.gather({
-                timeout: 10,
+                timeout: 20,
                 finishOnKey: '*'
             });
         }
@@ -87,18 +87,6 @@ exports.transcription = function(request, response) {
     var responseId = request.params.responseId;
     var questionIndex = request.params.questionIndex;
     var transcript = request.body.TranscriptionText;
-   
-   /*console.log('the zip ')
-   console.log(surveyResponse.responses[2].answer)
-   console.log('---------')
-    console.log('the transcript ' + transcript)*/
-    geocoder(transcript, function(results, status){
-        if(err){
-            console.error(err)
-        }else{
-            console.log(results)
-        }
-    })
 
     SurveyResponse.findById(responseId, function(err, surveyResponse) {
         if (err || !surveyResponse || 
@@ -112,4 +100,32 @@ exports.transcription = function(request, response) {
             return response.status(err ? 500 : 200).end();
         });
     });
+
+    setTimeout(
+        SurveyResponse.findById(responseId, function(err, surveyResponse) {
+        console.log('logging house number')
+        console.log(surveyResponse.responses[2].answer)
+        var houseNumber = surveyResponse.responses[2].answer
+        console.log('logging transcript')
+        console.log(transcript)
+        console.log('logging zip')
+        console.log(surveyResponse.responses[1].answer)
+        
+        var concatVar = {
+            "address": "4 Dorothy Avenue, 21221"
+         };
+
+        console.log('starting geocoder')
+        geocoder(concatVar, function(err, latLong){
+        if(err){
+            console.error(err)
+        }else{
+            console.log('LATLONG')
+            console.log(latLong.location.lat)
+            console.log(latLong.location.lng)
+            }
+        })
+    }), 50000)
+    
+
 };

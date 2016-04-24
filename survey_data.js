@@ -5,11 +5,15 @@ module.exports = [
         type: 'number'
     },
     {
-        text: 'Please tell us your address.',
-        type: 'text'
-    },
-    {
         text: 'Please enter your zip code.',
         type: 'number'
+    },
+    {
+        text: 'Please enter your house number.',
+        type: 'number'
+    },
+    {
+        text: 'Please tell us your street name.',
+        type: 'text'
     }
 ];
