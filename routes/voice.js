@@ -87,6 +87,11 @@ exports.transcription = function(request, response) {
     var responseId = request.params.responseId;
     var questionIndex = request.params.questionIndex;
     var transcript = request.body.TranscriptionText;
+   
+   /*console.log('the zip ')
+   console.log(surveyResponse.responses[2].answer)
+   console.log('---------')
+    console.log('the transcript ' + transcript)*/
     geocoder(transcript, function(results, status){
         if(err){
             console.error(err)

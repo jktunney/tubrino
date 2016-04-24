@@ -7,5 +7,9 @@ module.exports = [
     {
         text: 'Please tell us your address.',
         type: 'text'
+    },
+    {
+        text: 'Please enter your zip code.',
+        type: 'number'
     }
 ];

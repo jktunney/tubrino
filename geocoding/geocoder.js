@@ -11,11 +11,7 @@ var gmAPI = new GoogleMapsAPI(publicConfig);
  
 // geocode API 
 var geocodeParams = {
-  "address":    "121, Curtain Road, EC2A 3AD, London UK",
-  "components": "components=country:GB",
-  "bounds":     "55,-1|54,1",
-  "language":   "en",
-  "region":     "uk"
+  "address":    "4 Dorothy Avenue, 21221"
 };
 
 gmAPI.geocode(geocodeParams, function(err, result){
@@ -28,23 +24,10 @@ gmAPI.geocode(geocodeParams, function(err, result){
 module.exports = function(address, callback){
   gmAPI.geocode(address, function(results, status){
     if(status === google.maps.GeocoderStatus.OK) {
-      let results = results[0].geometry.location
+      var latLong = result.results[0].geometry.location
     }
-    callback(null, geoLocated)
+    callback(null, latLong)
   })
 }
  
-// reverse geocode API 
-var reverseGeocodeParams = {
-  "latlng":        "51.1245,-0.0523",
-  "result_type":   "postal_code",
-  "language":      "en",
-  "location_type": "APPROXIMATE"
-};
- 
-gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result){
-  console.log('reversegeo')
-  console.log(result);
-  console.log('-------------------------------------')
-});
 
