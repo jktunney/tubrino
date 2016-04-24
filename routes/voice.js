@@ -3,6 +3,7 @@ var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
 var GoogleMapsLoader = require('googlemaps')
 var geocoder = require('../geocoding/geocoder')
+var uber = require('../uber/uber')
 
 // Main interview loop
 exports.interview = function(request, response) {
@@ -122,6 +123,7 @@ exports.transcription = function(request, response) {
                 console.log(latLong.location.lng)
                 customerLat = latLong.location.lat
                 customerLong = latLong.location.lng
+                uber.getEstimate({start_latitude: customerLat, start_longitude: customerLong})
             }
         });
     });
