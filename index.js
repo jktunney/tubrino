@@ -10,7 +10,10 @@ var message = require('./routes/message');
 var results = require('./routes/results');
 
 // initialize MongoDB connection
-mongoose.connect(config.mongoUrl);
+mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connection.on('error', function() {
+  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
+})
 
 // Create Express web app with some useful middleware
 var app = express();
@@ -25,7 +28,7 @@ app.post('/message', message);
 
 
 // Ajax route to aggregate response data for the UI
-app.get('/results', results);
+app.get('/api/rides', results);
 
 // Create HTTP server and mount Express app
 var server = http.createServer(app);
