@@ -32,6 +32,7 @@
     "googlemaps": "^1.4.0",
     "griddle-react": "^0.5.1",
     "history": "^2.1.1",
+    "isomorphic-fetch": "^2.2.1",
     "jade": "^1.9.2",
     "mongoose": "4.4.8",
     "morgan": "^1.5.1",

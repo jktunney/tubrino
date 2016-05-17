@@ -1,18 +1,20 @@
+import fetch from 'isomorphic-fetch';
 import alt from '../alt';
 
 class RidesActions {
 	constructor() {
 		this.generateActions(
-			'getRides',
 			'getRidesSuccess'
 		);
 	}
 
 	getRides() {
-	  request
-	    .get('/api/rides')
-	    .end((err, res) => {
-	      this.actions.getRidesSuccess(res.body);
+		console.log('getRides')
+	  fetch('http://localhost:3000/api/rides')
+	  	.then(response => response.json())
+	    .then((data) => {
+	    	console.log(data.results)
+	      this.getRidesSuccess(data.results);
 	    });
 	}
 }

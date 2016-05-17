@@ -28,21 +28,22 @@ class Rides extends React.Component {
 	}
 
 	render() {
-		var fakeData =  [
-			{
-			    "id": 0,
-			    "name": "Mayer Leonard",
-			    "city": "Kapowsin",
-			    "state": "Hawaii",
-			    "country": "United Kingdom",
-			    "company": "Ovolo",
-			    "favoriteNumber": 7
+		var ridesData = this.state.rides.map((ride, i) => {
+			console.log("RIDE RESPONSES")
+			console.log(ride.responses)
+			console.log("PASSENGER GUESS")
+			console.log(ride.responses[0].answer)
+			return {
+			    "Passengers": ride.responses[0].answer,
+			    "Zip Code": ride.responses[1].answer,
+			    "Street Address": ride.responses[2].answer
+
 			}
-		]
+		})
 
 		return (
-		<Griddle results={fakeData} tableClassName="table" showFilter={true}
- 		showSettings={true} columns={["name", "city", "state", "country"]}/>
+		<Griddle results={ridesData} tableClassName="table" showFilter={true}
+ 		showSettings={true} columns={["Passengers", "Zip Code", "Street Address"]}/>
 		)
 	}
 }

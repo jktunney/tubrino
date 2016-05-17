@@ -8,7 +8,10 @@ class RidesStore {
 	}
 
 	onGetRidesSuccess(data) {
-		this.rides = data;
+		/*this.rides = data.slice(0, 1);*/
+		this.rides = data.filter((el) => {
+			return el.responses.length > 1;
+		})
 	}
 }
 
