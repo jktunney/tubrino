@@ -25,9 +25,6 @@ app.get('/callback', function (req, res) {
     });
 });
 
-exports.getEstimate = function (latlng) {
-    uber.estimates.time(latlng, function (err, res){
-            if (err) console.error(err);
-            else console.log(res);
-    });
+exports.getEstimate = function (latlng, callback) {
+    uber.estimates.time(latlng, callback);
 };

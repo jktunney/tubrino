@@ -123,7 +123,22 @@ exports.transcription = function(request, response) {
                 console.log(latLong.location.lng)
                 customerLat = latLong.location.lat
                 customerLong = latLong.location.lng
-                uber.getEstimate({start_latitude: customerLat, start_longitude: customerLong})
+                uber.getEstimate({start_latitude: customerLat, start_longitude: customerLong}, function (err, res){
+                    if (err) {
+                        console.error(err);
+                        return;
+                    } else {
+                        var times = res.times;
+                        console.log(times);
+
+                        // Update appropriate times field
+                        surveyResponse.responses.push(times);
+                        surveyResponse.markModified('responses');
+                        surveyResponse.save(function(err, doc) {
+                            console.log(err, doc)
+                        });
+                    }
+                });
             }
         });
     });
