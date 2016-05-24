@@ -10,6 +10,7 @@ var message = require('./routes/message');
 var results = require('./routes/results');
 
 // initialize MongoDB connection
+// have to serve the: webpack-dev-server --progress --colors
 mongoose.connect('mongodb://localhost:27017/test');
 mongoose.connection.on('error', function() {
   console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');

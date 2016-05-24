@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Griddle from 'griddle-react';
 import RidesStore from '../stores/RidesStore';
 import RidesActions from '../actions/RidesActions';
 import {first, without, findWhere} from 'underscore';
 
 
-class Rides extends React.Component {
+export default class Rides extends React.Component {
 
 	constructor(props){
 		super(props);
@@ -36,17 +35,17 @@ class Rides extends React.Component {
 			return {
 			    "Passengers": ride.responses[0].answer,
 			    "Zip Code": ride.responses[1].answer,
-			    "Street Address": ride.responses[2].answer
-
+			    "Street Address": ride.responses[2].answer,
+			    "Street Name": ride.responses[3].answer
 			}
 		})
 
 		return (
-		<Griddle results={ridesData} tableClassName="table" showFilter={true}
- 		showSettings={true} columns={["Passengers", "Zip Code", "Street Address"]}/>
+		<div>
+			<Griddle results={ridesData} tableClassName="table" showFilter={true} initialSortAscending={false}
+	 		showSettings={true} columns={["Passengers", "Street Address", "Street Name","Zip Code", ]}/>
+	 	</div>
 		)
 	}
 }
 
-
-ReactDOM.render(<Rides />, document.getElementById('griddle'));

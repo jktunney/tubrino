@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {Link} from 'react-router';
 
-class Hello extends React.Component{
+export default class Hello extends React.Component{
 	render() {
 		return(
-			<h2>Hello World</h2>
+			<div>
+				<h2>Ride Requests</h2>
+				<Link to="/griddle">Griddle</Link>
+			</div>
 		)
 	}
 }
-
-ReactDOM.render(<Hello/>, document.getElementById('hello'));
