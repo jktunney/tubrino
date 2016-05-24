@@ -42,7 +42,7 @@ export default class Rides extends React.Component {
 
 		return (
 		<div>
-			<Griddle results={ridesData} tableClassName="table" showFilter={true} initialSortAscending={false}
+			<Griddle results={ridesData} resultsPerPage={10} tableClassName="table" showFilter={true} initialSortAscending={false}
 	 		showSettings={true} columns={["Passengers", "Street Address", "Street Name","Zip Code", ]}/>
 	 	</div>
 		)

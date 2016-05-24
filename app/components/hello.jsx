@@ -8,11 +8,11 @@ export default class Hello extends React.Component{
 			
 			<Card>
 			    <CardMedia
-			      overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+			      overlay={<CardTitle title="Welcome to Tuber" subtitle="Empower your community" />}
 			    >
 			      <img src="http://lorempixel.com/600/337/nature/" />
 			    </CardMedia>
-			    <CardTitle title="Tuber" subtitle="Get there easy" />
+			    <CardTitle title="Give your community the freedom of transportation" subtitle="We make it easy to support your community to live happy, free lives" />
 			    <CardText>
 			      Tuber is an app that gets you places.
 			    </CardText>
