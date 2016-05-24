@@ -13,24 +13,24 @@ export default class App extends React.Component{
 		return(
 			<div>
 				<AppBar
-    title={ <Link to="/">Title</Link>}
-    iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-    iconElementRight={
-      <IconMenu
-        iconButtonElement={
-          <IconButton><MoreVertIcon /></IconButton>
-        }
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-      >
-        <MenuItem primaryText="Refresh">
-	        <Link to="/griddle">Griddle</Link>
-        </MenuItem>
-        <MenuItem primaryText="Help" />
-        <MenuItem primaryText="Sign out" />
-      </IconMenu>
-    }
-  />
+				    title={ <Link to="/">Tuber</Link>}
+				    iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+				    iconElementRight={
+				      <IconMenu
+				        iconButtonElement={
+				          <IconButton><MoreVertIcon /></IconButton>
+				        }
+				        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+				        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+				      >
+				        <MenuItem primaryText="Refresh">
+					        <Link to="/griddle">Dashboard</Link>
+				        </MenuItem>
+				        <MenuItem primaryText="Help" />
+				        <MenuItem primaryText="Sign out" />
+				      </IconMenu>
+				  	}
+  				/>
 				{this.props.children}	
 			</div>
 		)
