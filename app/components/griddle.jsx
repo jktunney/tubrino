@@ -40,9 +40,18 @@ export default class Rides extends React.Component {
 			}
 		})
 
+		var uberData = {
+
+
+		}
+
 		return (
 		<div>
+			<h1>Ride Requests</h1>
 			<Griddle results={ridesData} resultsPerPage={10} tableClassName="table" showFilter={true} initialSortAscending={false}
+	 		showSettings={true} columns={["Passengers", "Street Address", "Street Name","Zip Code", ]}/>
+	 		<h1>Ride Confimations</h1>
+	 		<Griddle results={uberData} resultsPerPage={10} tableClassName="table" showFilter={true} initialSortAscending={false}
 	 		showSettings={true} columns={["Passengers", "Street Address", "Street Name","Zip Code", ]}/>
 	 	</div>
 		)
