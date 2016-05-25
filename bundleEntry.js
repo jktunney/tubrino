@@ -8,6 +8,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import App from './app/components/App.jsx';
 import Hello from './app/components/hello.jsx';
 import Griddle from './app/components/griddle.jsx';
+import DashboardList from './app/components/DashboardList.jsx';
 
 // Needed for onTouchTap
 // Check this repo:

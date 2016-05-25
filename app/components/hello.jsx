@@ -16,10 +16,6 @@ export default class Hello extends React.Component{
 			    <CardText>
 			      Tuber is an app that gets you places.
 			    </CardText>
-			    <CardActions>
-			      <FlatButton label="Action1" />
-			      <FlatButton label="Action2" />
-			    </CardActions>
 			</Card>
 		)
 	}
