@@ -5,6 +5,7 @@ import RidesActions from '../actions/RidesActions';
 import {first, without, findWhere} from 'underscore';
 import DashboardList from './DashboardList.jsx';
 import {GridList, GridTile} from 'material-ui/GridList';
+import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
@@ -43,7 +44,13 @@ export default class Rides extends React.Component {
 		this.setState(state);
 	}
 
+  getMoreRides() {
+    RidesActions.getRides();
+  }
+
 	render() {
+    console.log("-----current state------")
+    console.log(this.state.rides)
 		var ridesData = this.state.rides.map((ride, i) => {
 			console.log("RIDE RESPONSES")
 			console.log(ride.responses)
@@ -59,408 +66,6 @@ export default class Rides extends React.Component {
 			}
 		});
 
-		var fakeData =  [{
-    "Confirmed": "true",
-    "Destination": "984 Loomis Alley",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "1433 Warrior Way",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "2 Westport Pass",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "2 Debra Terrace",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "20 Waxwing Trail",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "07775 Kropf Way",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "47217 Forest Dale Street",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "80556 Burrows Plaza",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "8275 Ohio Crossing",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "024 Dwight Circle",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "5710 Arkansas Plaza",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "708 Judy Parkway",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "24872 Killdeer Junction",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "20 Monument Circle",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "2528 Kings Court",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "9527 Claremont Circle",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "850 Merry Junction",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "10 Gina Lane",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "21 Nelson Road",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "2 Melody Drive",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "183 Haas Drive",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "669 Evergreen Court",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "40 Trailsway Circle",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "050 Browning Crossing",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "92 Pierstorff Crossing",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "39677 Stang Crossing",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "65363 Schmedeman Point",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "4844 Red Cloud Avenue",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "594 American Ash Terrace",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "58 Dixon Circle",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "67 Transport Way",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "665 Logan Place",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "7059 Kedzie Parkway",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "2206 Mcbride Park",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "038 Stang Terrace",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "81 Roxbury Crossing",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "8 Mendota Avenue",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "0904 7th Alley",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "3 Schurz Plaza",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "6 Cody Center",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "45 Anzinger Center",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "62 Division Avenue",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "7849 Hovde Drive",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "292 Toban Lane",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "62884 Kedzie Hill",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "94 Graceland Way",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "7249 Melody Trail",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "84729 New Castle Trail",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "1541 Kropf Court",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "10433 Briar Crest Street",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "618 Petterle Center",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "65 Claremont Circle",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "3 Schiller Drive",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "9 Blackbird Alley",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "38616 Kenwood Place",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "24 High Crossing Junction",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "791 Crest Line Hill",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "9405 American Terrace",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "4514 Swallow Park",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "16 Bartelt Road",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "78359 Eagle Crest Circle",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "170 Shopko Center",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "098 Leroy Trail",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "830 Heffernan Terrace",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "88727 Judy Crossing",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "83554 La Follette Plaza",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "55 Gina Trail",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "180 Mallory Court",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "237 Mayer Junction",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "8 Nancy Pass",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "859 Barby Place",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "049 Lillian Place",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "482 Bobwhite Point",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "6059 Garrison Way",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "25142 Fallview Terrace",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "78 Pine View Drive",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "36 Elgar Way",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "13698 Lindbergh Parkway",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "8 Sunfield Lane",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "29827 Transport Avenue",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "051 Rockefeller Circle",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "28 Anderson Trail",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "9959 Erie Terrace",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "0516 Emmet Park",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "83 Weeping Birch Center",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "764 Pond Point",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "07282 Jay Plaza",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "7399 Eggendart Plaza",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "9067 Judy Parkway",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "82 Northridge Place",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "494 Alpine Lane",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "08 Wayridge Parkway",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "7 Alpine Avenue",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "8 Anniversary Pass",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "false",
-    "Destination": "1 Shasta Drive",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "true",
-    "Destination": "4157 Morning Plaza",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "0 7th Hill",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "78 Hazelcrest Place",
-    "Arrived": "false"
-  }, {
-    "Confirmed": "false",
-    "Destination": "80184 Darwin Parkway",
-    "Arrived": "true"
-  }, {
-    "Confirmed": "true",
-    "Destination": "788 Transport Parkway",
-    "Arrived": "true"
-  }]
-
 		return (
 			<div style={styles.root}>
 			    <GridList
@@ -474,17 +79,18 @@ export default class Rides extends React.Component {
 					</GridTile>
 					<GridTile>
 						<h1>Ride Requests</h1>
-						<Griddle results={ridesData} resultsPerPage={10} tableClassName="table" showFilter={true} initialSortAscending={false}
+            <RaisedButton onClick={this.getMoreRides} label="Update your rides" />
+						<Griddle results={ridesData} resultsPerPage={4} tableClassName="table" showFilter={true} initialSortAscending={false}
 				 		showSettings={true} columns={["Passengers", "Wheel Chair", "Street Address", "Street Name","Zip Code", "Confirmed"]}/>
 		 			</GridTile>
 		 			<GridTile>
-						<DashboardList />
+						{/*<DashboardList />*/}
 					</GridTile>
-			 		<GridTile>
+			 		{/*<GridTile>
 				 		<h1>Ride Confirmations</h1>
 						<Griddle results={fakeData} resultsPerPage={10} tableClassName="table" showFilter={true} initialSortAscending={false}
 				 		showSettings={true} columns={["Confirmed", "Destination", "Arrived"]}/>
-			 		</GridTile>
+			 		</GridTile>*/}
 		 		</GridList>
 		 	</div>
 		)

@@ -15,5 +15,9 @@ module.exports = [
     {
         text: 'Please tell us your street name, city, and state.',
         type: 'text'
+    },
+    {
+        text: 'Do you need wheelchair assistance?',
+        type: 'boolean'
     }
 ];

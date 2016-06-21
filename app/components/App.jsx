@@ -26,9 +26,6 @@ export default class App extends React.Component{
 				        <MenuItem primaryText="Refresh">
 					        <Link to="/griddle">Dashboard</Link>
 				        </MenuItem>
-				        <MenuItem primaryText="Refresh">
-					        <Link to="/griddle">Dashboard</Link>
-				        </MenuItem>
 				        <MenuItem primaryText="Help" />
 				        <MenuItem primaryText="Sign out" />
 				      </IconMenu>

@@ -13,7 +13,7 @@ import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
 const DashboardList = () => (
   <MobileTearSheet>
     <List>
-      <Subheader inset={true}>Actions</Subheader>
+      <h1><Subheader inset={true}>Actions</Subheader></h1>
       <ListItem
         leftAvatar={<Avatar icon={<FileFolder />} />}
         rightIcon={<ActionInfo />}
