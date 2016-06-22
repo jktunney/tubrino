@@ -22,7 +22,7 @@ if (window.location.host === 'localhost:8080') {
 injectTapEventPlugin();
 
 const routes = (
-	<Route path="/app" component={App}>
+	<Route path="/" component={App}>
 		<IndexRoute component={Hello} />
 		<Route path="griddle" component={Griddle} />
 	</Route>

@@ -13,7 +13,7 @@ export default class App extends React.Component{
 		return(
 			<div>
 				<AppBar
-				    title={ <Link to="/app">Tuber</Link>}
+				    title={ <Link to="/">Tuber</Link>}
 				    iconElementLeft={<IconButton><NavigationClose /></IconButton>}
 				    iconElementRight={
 				      <IconMenu
@@ -24,7 +24,7 @@ export default class App extends React.Component{
 				        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 				      >
 				        <MenuItem primaryText="Refresh">
-					        <Link to="/app/griddle">Dashboard</Link>
+					        <Link to="/griddle">Dashboard</Link>
 				        </MenuItem>
 				        <MenuItem primaryText="Help" />
 				        <MenuItem primaryText="Sign out" />

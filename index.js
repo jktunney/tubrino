@@ -26,27 +26,29 @@ app.use(morgan('combined'));
 
 app.use(cors());
 
+app.get('', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
+
+app.get('/', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
+
 // Twilio Webhook routes
 app.post('/voice', voice.interview);
 app.post('/voice/:responseId/transcribe/:questionIndex', voice.transcription);
 app.post('/message', message);
 
-app.get('/app', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-})
-
-app.get('/app/*', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-})
-
 app.get('/dist/:bundlefile', function (request, response){
   response.sendFile(path.resolve(__dirname, 'dist', request.params.bundlefile))
 })
 
-
 // Ajax route to aggregate response data for the UI
 app.get('/api/rides', results);
 
+app.get('/*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
 // Create HTTP server and mount Express app
 var server = http.createServer(app);
 server.listen(config.port, function() {
