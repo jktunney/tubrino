@@ -10,7 +10,7 @@ class RidesActions {
 
 	getRides() {
 		console.log('getRides')
-	  fetch('http://localhost:3000/api/rides')
+	  fetch(global.apiBaseUrl + '/api/rides')
 	  	.then(response => response.json())
 	    .then((data) => {
 	    	console.log(data.results)

@@ -8,10 +8,11 @@ var config = require('./config');
 var voice = require('./routes/voice');
 var message = require('./routes/message');
 var results = require('./routes/results');
+var cors = require('cors');
 
 // initialize MongoDB connection
 // have to serve the: webpack-dev-server --progress --colors
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect(process.env.TUBER_MONGO_URL || 'mongodb://localhost:27017/test');
 mongoose.connection.on('error', function() {
   console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
 })
@@ -19,13 +20,28 @@ mongoose.connection.on('error', function() {
 // Create Express web app with some useful middleware
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/dist'))
 app.use(urlencoded({ extended: true }));
 app.use(morgan('combined'));
+
+app.use(cors());
 
 // Twilio Webhook routes
 app.post('/voice', voice.interview);
 app.post('/voice/:responseId/transcribe/:questionIndex', voice.transcription);
 app.post('/message', message);
+
+app.get('/app', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
+
+app.get('/app/*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
+
+app.get('/dist/:bundlefile', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'dist', request.params.bundlefile))
+})
 
 
 // Ajax route to aggregate response data for the UI

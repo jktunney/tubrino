@@ -1,19 +1,29 @@
-var path = require('path');
+'use strict';
+
 var webpack = require('webpack');
- 
+var path = require('path');
+
 module.exports = {
-  entry: './bundleEntry.js',
-  output: { path: __dirname, filename: 'bundle.js', publicPath: "http://localhost:8080/" },
-  module: {
-    loaders: [
-      {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react']
-        }
-      }
-    ]
-  },
+    target: 'web',
+    debug: true,
+    devtool: 'source-map',
+    context: __dirname,
+    entry: {
+        tuber: './bundleEntry.js'
+    },
+    output: {
+        path: path.join(__dirname, 'dist'),
+        publicPath: '/dist/',
+        filename: '[name].bundle.js'
+    },
+    module: {
+        loaders: [
+            {
+                test: /.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel'
+            }
+        ]
+    },
+    plugins: []
 };
