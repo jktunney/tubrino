@@ -21,10 +21,10 @@ if (window.location.host === 'localhost:8080') {
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
+
 const routes = (
 	<Route path="/" component={App}>
-		<IndexRoute component={Hello} />
-		<Route path="griddle" component={Griddle} />
+		<IndexRoute component={Griddle} />
 	</Route>
 );
 

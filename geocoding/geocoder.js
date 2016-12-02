@@ -8,6 +8,7 @@ var publicConfig = {
   //proxy:              'http://127.0.0.1:9999' // optional, set a proxy for HTTP requests 
 };
 var gmAPI = new GoogleMapsAPI(publicConfig);
+console.log(gmAPI);
  
 module.exports = function(concatVar, callback){
   gmAPI.geocode(concatVar, function(err, result){
