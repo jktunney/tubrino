@@ -79,7 +79,7 @@ export default class Rides extends React.Component {
 					</GridTile>
 					<GridTile>
 						<h1>Ride Requests:</h1> <h2>Call (443) 917-3644 to try it out!</h2>
-						<h3>Click the button below and watch your data magically appear :) </h3>
+						<h3>Click the button below to refresh the dashboard for new ride requests </h3>
             <RaisedButton onClick={this.getMoreRides} label="Update your rides" />
 						<Griddle results={ridesData} resultsPerPage={4} tableClassName="table" showFilter={true} initialSortAscending={false}
 				 		showSettings={true} columns={["Passengers", "Wheel Chair", "Street Address", "Street Name","Zip Code", "Confirmed"]}/>
