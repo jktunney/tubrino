@@ -1,8 +1,8 @@
 # Tuber
-Tuber, 1st Place winner of the 2016 [Abilities Hackathon](abilitieshackathon.com) lets you hail an Uber ride with just a regular landline or cell phone (no smartphone app required)
+Tuber, 1st Place winner of the 2016 [Abilities Hackathon](abilitieshackathon.com), lets users hail an Uber ride with just a regular landline or cell phone (no smartphone app required)
 
 # Inspiration
-Older adults and people who prefer not to use, or who can't afford smart-phones have limited access to social and health resources.  Transporation is a major factor with accessing these resources.
+Older adults and people who prefer not to use, or who can't afford smartphones, have limited access to social and health resources.  Transporation is a major factor with accessing these resources.
 
 ## Current Prototype
 The current prototype is hosted here: [Tuber](https://tuberino.herokuapp.com).
@@ -23,7 +23,7 @@ Built using React & Material-UI with Alt.js for its Flux implementation
 
 - Clone repo
 - Install dependencies `npm install`
-- You must have MongoDB installed, run mongod for the database
-- Build using Gulp: "gulp build" then "gulp dev-server" 
+- You must have MongoDB installed, run `mongod` for the database
+- Build using Gulp: `gulp build` then `gulp dev-server` 
 - Visit localhost:8080
 
