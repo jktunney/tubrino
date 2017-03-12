@@ -3,7 +3,22 @@ var SurveyResponse = require('../models/SurveyResponse');
 var survey = require('../survey_data');
 var GoogleMapsLoader = require('googlemaps')
 var geocoder = require('../geocoding/geocoder')
+var lyftcontroller = require('../controllers/api/lyft/ridetypes.js')
 var uber = require('../uber/uber')
+var LyftApi = require('lyft-api');
+
+var defaultClient = LyftApi.ApiClient.instance;
+
+
+ClientAuthentication = defaultClient.authentications['Client Authentication'];
+ClientAuthentication.accessToken = "gAAAAABYMIRRu6S9oIys5Czk09ZctznhQ3RZhWsqXC8v3qrEtvVHCQ9KuGtWCZSf_eqeaIwDGHr0OKD7VrUcherdQSss7y7CdMf9PBPldusYy6e8w4KFwW8zNo0ulmibfLCFdk9mn1D15jgm9sx9eocKSHOsnwNy7cHtaOgpJlQIn_Itr6msBOQ="
+
+
+UserAuthentication = defaultClient.authentications['User Authentication'];
+UserAuthentication.accessToken = "gAAAAABYMIRRu6S9oIys5Czk09ZctznhQ3RZhWsqXC8v3qrEtvVHCQ9KuGtWCZSf_eqeaIwDGHr0OKD7VrUcherdQSss7y7CdMf9PBPldusYy6e8w4KFwW8zNo0ulmibfLCFdk9mn1D15jgm9sx9eocKSHOsnwNy7cHtaOgpJlQIn_Itr6msBOQ="
+
+apiInstance = new LyftApi.PublicApi()
+
 
 // Main interview loop
 exports.interview = function(request, response) {
@@ -88,6 +103,7 @@ exports.transcription = function(request, response) {
     var responseId = request.params.responseId;
     var questionIndex = request.params.questionIndex;
     var transcript = request.body.TranscriptionText;
+    var defaultClient = LyftApi.ApiClient.instance;
 
     SurveyResponse.findById(responseId, function(err, surveyResponse) {
         if (err || !surveyResponse || 
@@ -100,12 +116,11 @@ exports.transcription = function(request, response) {
         surveyResponse.save(function(err, doc) {
             return response.status(err ? 500 : 200).end();
         });
-        
+
         concatVar = {
             "address": surveyResponse.responses[2].answer + ' ' + transcript + ' ' + surveyResponse.responses[1].answer
         };
 
-    //    this.orderUber(addrInfo)
         if (!concatVar) {
             console.log('No concatVar, using default')
             concatVar = {
@@ -121,9 +136,94 @@ exports.transcription = function(request, response) {
                 console.log('LATLONG')
                 console.log(latLong.location.lat)
                 console.log(latLong.location.lng)
-                customerLat = latLong.location.lat
-                customerLong = latLong.location.lng
-                uber.getEstimate({start_latitude: customerLat, start_longitude: customerLong}, function (err, res){
+                
+                // var customerLat = latLong.location.lat
+                // var customerLong = latLong.location.lng
+
+                console.log('lyft-api')
+
+                apiInstance.ridetypesGet(latLong.location.lat, latLong.location.lng, {'rideType': "lyft"}, function(erro, data, resp) {
+                  if (erro) {
+                    console.log('THere is an error')
+                    console.error(erro);
+                    return;
+                  } else {
+                    console.log('API called successfully. Returned ride type data: ' + data);
+                    console.log(resp.header)
+                    console.log(resp.text)
+                        
+
+
+                        surveyResponse.responses.push(resp.text);
+                        surveyResponse.markModified('responses');
+                        surveyResponse.save(function(err, doc) {
+                            console.log(err, doc)
+                        });
+                  }
+                });
+                
+                apiInstance.etaGet(latLong.location.lat, latLong.location.lng, {'rideType': "lyft"}, function(erro, data, resp) {
+                  if (erro) {
+                    console.log('THere is an error')
+                    console.error(erro);
+                    return;
+                  } else {
+                    console.log('API called successfully. Returned eta data: ' + data);
+                    console.log(resp.header)
+                    console.log(resp.text)
+                        
+
+
+                        surveyResponse.responses.push(resp.text);
+                        surveyResponse.markModified('responses');
+                        surveyResponse.save(function(err, doc) {
+                            console.log(err, doc)
+                        });
+                  }
+                });
+
+                apiInstance.costGet(latLong.location.lat, latLong.location.lng, {'rideType': "lyft"}, function(erro, data, resp) {
+                  if (erro) {
+                    console.log('THere is an error')
+                    console.error(erro);
+                    return;
+                  } else {
+                    console.log('API called successfully. Returned cost data: ' + data);
+                    console.log(resp.header)
+                    console.log(resp.text)
+                        
+
+
+                        surveyResponse.responses.push(resp.text);
+                        surveyResponse.markModified('responses');
+                        surveyResponse.save(function(err, doc) {
+                            console.log(err, doc)
+                        });
+                  }
+                });
+
+
+                apiInstance.driversGet(latLong.location.lat, latLong.location.lng, function(erro, data, resp) {
+                  if (erro) {
+                    console.log('THere is an error')
+                    console.error(erro);
+                    return;
+                  } else {
+                    console.log('API called successfully. Returned drivers data: ' + data);
+                    console.log(resp.header)
+                    console.log(resp.text)
+                        
+
+
+                        surveyResponse.responses.push(resp.text);
+                        surveyResponse.markModified('responses');
+                        surveyResponse.save(function(err, doc) {
+                            console.log(err, doc)
+                        });
+                  }
+                });
+
+                uber.getEstimate({start_latitude: latLong.location.lat, start_longitude: latLong.location.lng}, function (err, res){
                     if (err) {
                         console.error(err);
                         return;
@@ -139,6 +239,7 @@ exports.transcription = function(request, response) {
                         });
                     }
                 });
+                
             }
         });
     });
@@ -162,7 +263,10 @@ exports.transcription = function(request, response) {
 //            }
 //        })
 //    }), 50000)
-    
+
+
+
+
 
 //exports.orderUber = function(addrInfo) {
 //    //var uberorder = new Uber.order

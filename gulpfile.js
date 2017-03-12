@@ -40,7 +40,9 @@ var WebpackDevServer = require('webpack-dev-server');
 var path = require('path');
 
 gulp.task('dev-server', ['webpack-dev-server']);
-
+gulp.task('test', () => {
+  console.log('It works!');
+}); //added..not sure how useful this is..
 gulp.task('webpack-dev-server', function(callback) {
 
     var compiler = webpack(webpackConfig);

@@ -1,5 +1,7 @@
 'use strict';
 
+var _assign = require('object-assign');
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
@@ -28,7 +30,6 @@ var ArrayIterators = function () {
   if (!hasNative) {
     ArrayIterator = function () {
       // 22.1.5.1 CreateArrayIterator Abstract Operation
-
       function ArrayIterator(array, kind) {
         _classCallCheck(this, ArrayIterator);
 
@@ -111,7 +112,6 @@ var StringIterators = function () {
   if (!hasNative) {
     StringIterator = function () {
       // 21.1.5.1 CreateStringIterator Abstract Operation
-
       function StringIterator(string) {
         _classCallCheck(this, StringIterator);
 
@@ -167,7 +167,7 @@ var StringIterators = function () {
   }
 
   return {
-    keys: function () {
+    keys: function keys() {
       throw TypeError('Strings default iterator doesn\'t implement keys.');
     },
 
@@ -178,7 +178,7 @@ var StringIterators = function () {
       return new StringIterator(string);
     },
 
-    entries: function () {
+    entries: function entries() {
       throw TypeError('Strings default iterator doesn\'t implement entries.');
     }
   };
@@ -241,13 +241,13 @@ var ObjectIterator = function () {
 
 
 var GenericIterators = {
-  keys: function (object) {
+  keys: function keys(object) {
     return new ObjectIterator(object, KIND_KEYS);
   },
-  values: function (object) {
+  values: function values(object) {
     return new ObjectIterator(object, KIND_VALUES);
   },
-  entries: function (object) {
+  entries: function entries(object) {
     return new ObjectIterator(object, KIND_ENTRIES);
   }
 };
@@ -268,15 +268,15 @@ function enumerate(object, kind) {
 
     // Then see if an object implements own.
   } else if (object[Symbol.iterator]) {
-      return object[Symbol.iterator]();
+    return object[Symbol.iterator]();
 
-      // And fallback to generic with entries.
-    } else {
-        return GenericIterators[kind || KIND_ENTRIES](object);
-      }
+    // And fallback to generic with entries.
+  } else {
+    return GenericIterators[kind || KIND_ENTRIES](object);
+  }
 }
 
-Object.assign(enumerate, {
+_assign(enumerate, {
   /**
    * Export constants
    */
@@ -289,13 +289,13 @@ Object.assign(enumerate, {
    * Convenient explicit iterators for special kinds.
    */
 
-  keys: function (object) {
+  keys: function keys(object) {
     return enumerate(object, KIND_KEYS);
   },
-  values: function (object) {
+  values: function values(object) {
     return enumerate(object, KIND_VALUES);
   },
-  entries: function (object) {
+  entries: function entries(object) {
     return enumerate(object, KIND_ENTRIES);
   },
 

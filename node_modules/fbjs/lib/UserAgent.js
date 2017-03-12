@@ -111,8 +111,7 @@ var UserAgent = {
    * @param {string} query Query of the form "Name [range expression]"
    * @return {boolean}
    */
-
-  isBrowser: function (query) {
+  isBrowser: function isBrowser(query) {
     return compare(UserAgentData.browserName, UserAgentData.browserFullVersion, query);
   },
 
@@ -125,7 +124,7 @@ var UserAgent = {
    * @param {string} query Query of the form "32" or "64".
    * @return {boolean}
    */
-  isBrowserArchitecture: function (query) {
+  isBrowserArchitecture: function isBrowserArchitecture(query) {
     return compare(UserAgentData.browserArchitecture, null, query);
   },
 
@@ -154,7 +153,7 @@ var UserAgent = {
    * @param {string} query Query of the form "Name"
    * @return {boolean}
    */
-  isDevice: function (query) {
+  isDevice: function isDevice(query) {
     return compare(UserAgentData.deviceName, null, query);
   },
 
@@ -181,7 +180,7 @@ var UserAgent = {
    * @param {string} query Query of the form "Name [range expression]"
    * @return {boolean}
    */
-  isEngine: function (query) {
+  isEngine: function isEngine(query) {
     return compare(UserAgentData.engineName, UserAgentData.engineVersion, query);
   },
 
@@ -221,7 +220,7 @@ var UserAgent = {
    * @param {string} query Query of the form "Name [range expression]"
    * @return {boolean}
    */
-  isPlatform: function (query) {
+  isPlatform: function isPlatform(query) {
     return compare(UserAgentData.platformName, UserAgentData.platformFullVersion, query, normalizePlatformVersion);
   },
 
@@ -234,7 +233,7 @@ var UserAgent = {
    * @param {string} query Query of the form "32" or "64".
    * @return {boolean}
    */
-  isPlatformArchitecture: function (query) {
+  isPlatformArchitecture: function isPlatformArchitecture(query) {
     return compare(UserAgentData.platformArchitecture, null, query);
   }
 };

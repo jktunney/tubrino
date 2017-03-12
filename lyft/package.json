@@ -1,0 +1,27 @@
+{
+  "name": "lyft-node-starter-kit",
+  "version": "0.0.1",
+  "description": "Starter kit for Lyft's public API with node.",
+  "author": "Jordan Patton <jordanpatton@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordanpatton/lyft-node-starter-kit.git"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "nedb-session-store": "^1.1.1",
+    "pug": "^2.0.0-beta2",
+    "request": "^2.72.0"
+  },
+  "main": "app.js",
+  "bugs": {
+    "url": "https://github.com/jordanpatton/lyft-node-starter-kit/issues"
+  },
+  "homepage": "https://github.com/jordanpatton/lyft-node-starter-kit#readme",
+  "devDependencies": {},
+  "license": "ISC"
+}

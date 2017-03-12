@@ -7,7 +7,6 @@ class RidesActions {
 			'getRidesSuccess'
 		);
 	}
-
 	getRides() {
 		console.log('getRides')
 	  fetch(global.apiBaseUrl + '/api/rides')
@@ -17,6 +16,11 @@ class RidesActions {
 	      this.getRidesSuccess(data.results);
 	    });
 	}
+
+	// getCoords(){
+	// 		console.log('getCoords')
+	// 	fetch()
+	// }
 }
 
 export default alt.createActions(RidesActions);

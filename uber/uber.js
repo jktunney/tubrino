@@ -3,9 +3,9 @@ var express = require('express');
 var app = express();
 
 var options = {
-    client_id: 'JLdPD6d6TAWMFMWWyx9oOPGu1Lg4pMGI',
-    client_secret: 'iL2jtSqCfJu_ZYsw3dsSiJq06gB6-RfUzG-elk7m',
-    server_token: '9r2VXLQ_O5_MljtnJC0pP_bYBVgTJ6Vrp21EP6ve',
+    client_id: '',
+    client_secret: '',
+    server_token: '',
     name: 'tubrino',
     redirect_uri: 'http://localhost:3000/callback'
 };

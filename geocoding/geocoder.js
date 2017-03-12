@@ -1,7 +1,7 @@
 var GoogleMapsAPI = require('googlemaps')
 
 var publicConfig = {
-  key: 'AIzaSyAPn3z-8ixvGSXGPxUVP3anBdH20cr-GCE',
+  key: '',
   stagger_time:       1000, // for elevationPath 
   encode_polylines:   false,
   secure:             true, // use https 
@@ -17,5 +17,3 @@ module.exports = function(concatVar, callback){
       callback(null, latLong)
   })
 }
- 
-

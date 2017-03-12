@@ -9,6 +9,12 @@ var voice = require('./routes/voice');
 var message = require('./routes/message');
 var results = require('./routes/results');
 var cors = require('cors');
+var uber = require('./uber/uber')
+var expressSession   = require('express-session');
+// var config = require('./config/index.js')
+
+var Lyft = require('node-lyft');
+lyft = new Lyft();
 
 // initialize MongoDB connection
 // have to serve the: webpack-dev-server --progress --colors
@@ -34,10 +40,20 @@ app.get('/', function (request, response){
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
 
+// app.use(
+// 	expressSession({
+// 		secret: config.SESSION_SECRET
+// 	})
+// );
+
 // Twilio Webhook routes
 app.post('/voice', voice.interview);
 app.post('/voice/:responseId/transcribe/:questionIndex', voice.transcription);
 app.post('/message', message);
+
+var apiLyftController = require('./controllers/api/lyft');
+app.post('/api/lyft/ridetypes',apiLyftController.getRideTypes);
+app.post('/api/lyft/cost', apiLyftController.getCost);
 
 app.get('/dist/:bundlefile', function (request, response){
   response.sendFile(path.resolve(__dirname, 'dist', request.params.bundlefile))
